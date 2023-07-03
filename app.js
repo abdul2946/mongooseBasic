@@ -2,6 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config();
+
+const mongoUri = process.env.MONGO_URI
 
 const app = express();
 
@@ -15,9 +19,7 @@ app.use(
 app.use(express.static("public"));
 
 //? MongoDB connection
-mongoose.connect(
-  "mongodb+srv://root:tY0ZBW86oVmTaCDS@cluster0.pg9op.mongodb.net/wikiDB?retryWrites=true&w=majority"
-);
+mongoose.connect(mongoUri);
 
 //? Creating Mongoose Schema and Model
 const articleSchema = {
